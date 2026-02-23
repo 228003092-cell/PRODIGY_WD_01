@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Secure User Authentication</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0b1f4d, #2d6cdf);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #0b1f4d;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #bcd3ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2d6cdf;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout {
+            background: #ff4d4d;
+            margin-top: 10px;
+        }
+
+        /* hide welcome initially */
+        #welcomeCard {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Create Account ===== -->
+    <div class="card" id="signupCard">
+        <h2>Create Account</h2>
+
+        <input id="name" placeholder="Name">
+        <input id="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+
+        <button onclick="signup()">Sign Up</button>
+    </div>
+
+
+    <!-- ===== Welcome Screen ===== -->
+    <div class="card" id="welcomeCard">
+        <h2 id="welcomeMsg"></h2>
+        <p style="color:green;">Login Successful ✅</p>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+
+    <script>
+        function signup() {
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (name === "" || email === "" || password === "") {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            // hide signup
+            document.getElementById("signupCard").style.display = "none";
+
+            // show welcome
+            document.getElementById("welcomeCard").style.display = "block";
+
+            // show email
+            document.getElementById("welcomeMsg").innerText =
+                "Welcome, " + email;
+        }
+
+        function logout() {
+            document.getElementById("signupCard").style.display = "block";
+            document.getElementById("welcomeCard").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
